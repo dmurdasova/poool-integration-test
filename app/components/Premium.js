@@ -38,9 +38,11 @@ export default ({ children }) => {
 
   const [config, setConfig] = useState(null);
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     setTimeout(() => {
-      setConfig({});
+      setLoading(false);
     }, 1000 * 3);
   }, []);
 
@@ -73,6 +75,7 @@ export default ({ children }) => {
 
   const onSubscribeClick = (e) => {
     e.originalEvent?.preventDefault();
+    navigate("/subscribe");
   };
 
   const onLoginClick = async (e) => {
@@ -97,7 +100,7 @@ export default ({ children }) => {
     }
   });
 
-  if (!config) {
+  if (loading) {
     return <div>Loading...</div>;
   }
 
